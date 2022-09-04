@@ -1,7 +1,6 @@
 
 
 import javax.annotation.Nullable;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
@@ -11,7 +10,7 @@ import io.netty.buffer.Unpooled;
 
 public class LitematicaBlockStateContainer implements ILitematicaBlockStatePaletteResizer
 {
-    public static final BlockState AIR_BLOCK_STATE = Blocks.AIR.getDefaultState();
+    public static final String AIR_BLOCK_STATE = "minecraft:air";
     protected LitematicaBitArray storage;
     protected ILitematicaBlockStatePalette palette;
     protected final Vec3i size;
@@ -61,19 +60,19 @@ public class LitematicaBlockStateContainer implements ILitematicaBlockStatePalet
         return this.blockCounts;
     }
 
-    public BlockState get(int x, int y, int z)
+    public String get(int x, int y, int z)
     {
-        BlockState state = this.palette.getBlockState(this.storage.getAt(this.getIndex(x, y, z)));
+        String state = this.palette.getBlockState(this.storage.getAt(this.getIndex(x, y, z)));
         return state == null ? AIR_BLOCK_STATE : state;
     }
 
-    public void set(int x, int y, int z, BlockState state)
+    public void set(int x, int y, int z, String state)
     {
         int id = this.palette.idFor(state);
         this.storage.setAt(this.getIndex(x, y, z), id);
     }
 
-    protected void set(int index, BlockState state)
+    protected void set(int index, String state)
     {
         int id = this.palette.idFor(state);
         this.storage.setAt(index, id);
@@ -114,7 +113,7 @@ public class LitematicaBlockStateContainer implements ILitematicaBlockStatePalet
     }
 
     @Override
-    public int onResize(int bits, BlockState state)
+    public int onResize(int bits, String state)
     {
         LitematicaBitArray oldStorage = this.storage;
         ILitematicaBlockStatePalette oldPalette = this.palette;

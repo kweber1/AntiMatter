@@ -1,8 +1,8 @@
 
 
-import net.minecraft.block.BlockState;
+
 
 public interface ILitematicaBlockStatePaletteResizer
 {
-    int onResize(int bits, BlockState state);
+    int onResize(int bits, String state);
 }

@@ -29,7 +29,7 @@ public class NBTUtil {
             System.out.println(palette);
             int bits = Math.max(2, Integer.SIZE - Integer.numberOfLeadingZeros(palette.size() - 1));
             LitematicaBlockStateContainer container = LitematicaBlockStateContainer.createFrom(palette, blockStateArr, size);
-            System.out.println( container.get(0,0,0));
+            System.out.println( container.get(1,0,0));
 
             return true;
         }

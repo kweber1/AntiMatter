@@ -2,7 +2,6 @@
 
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtList;
 
 public interface ILitematicaBlockStatePalette
@@ -11,13 +10,14 @@ public interface ILitematicaBlockStatePalette
      * Gets the palette id for the given block state and adds
      * the state to the palette if it doesn't exist there yet.
      */
-    int idFor(BlockState state);
+    int idFor(String state);
+
 
     /**
      * Gets the block state by the palette id.
      */
     @Nullable
-    BlockState getBlockState(int indexKey);
+    String getBlockState(int indexKey);
 
     int getPaletteSize();
 
@@ -31,5 +31,5 @@ public interface ILitematicaBlockStatePalette
      * @param list
      * @return true if the mapping was set successfully, false if it failed
      */
-    boolean setMapping(List<BlockState> list);
+    boolean setMapping(List<String> list);
 }
